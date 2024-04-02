@@ -10,14 +10,20 @@ import { styles } from './ButtonGeneratorStyle';
 
 export function ButtonGenerator() {
   const [password, setPass] = useState('');
+  const [copyPassword, setCopyPassword] = useState('©️ COPIAR SENHA');
+  
   
   function handleGenerateButton() {
     const token = generatePass();
     setPass(token);
+    setCopyPassword('©️ COPIAR SENHA');
   };
 
   function handleCopyButton() {
-    Clipboard.setStringAsync(password);
+    if (password) {
+      Clipboard.setStringAsync(password);
+      setCopyPassword('©️ SENHA COPIADA');
+    };
   };
 
   return (
@@ -35,7 +41,7 @@ export function ButtonGenerator() {
         style={styles.button}
         onPress={handleCopyButton}
       >
-        <Text style={styles.textButton}>©️ COPIAR SENHA</Text>
+        <Text style={styles.textButton}>{copyPassword}</Text>
       </Pressable>
     </>
   );
