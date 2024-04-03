@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Pressable, Text } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
-import { InputText } from '../text-input/InputText';
+import { FaTrashAlt } from "react-icons/fa";
 
+import { InputText } from '../text-input/InputText';
 import generatePass from '../../services/passwordService';
 
 import { styles } from './ButtonGeneratorStyle';
@@ -11,6 +12,7 @@ import { styles } from './ButtonGeneratorStyle';
 export function ButtonGenerator() {
   const [password, setPass] = useState('');
   const [copyPassword, setCopyPassword] = useState('©️ COPIAR SENHA');
+  
   
   
   function handleGenerateButton() {
@@ -26,9 +28,16 @@ export function ButtonGenerator() {
     };
   };
 
+  function handleClearButton() {
+    if (password) {
+      setPass('');
+      setCopyPassword('©️ COPIAR SENHA');
+    };
+  };
+
   return (
     <>
-      <InputText text="Senha Gerada" password={ password } />
+      <InputText text='Senha criada' password={ password } />
 
       <Pressable
         style={styles.button}
@@ -42,6 +51,13 @@ export function ButtonGenerator() {
         onPress={handleCopyButton}
       >
         <Text style={styles.textButton}>{copyPassword}</Text>
+      </Pressable>
+
+     <Pressable
+        style={styles.button}
+        onPress={handleClearButton}
+      >
+        <Text style={styles.icon}>🗑️ EXCLUIR SENHA</Text>
       </Pressable>
     </>
   );

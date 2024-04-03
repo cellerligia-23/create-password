@@ -18,5 +18,11 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.25,
     textAlign: 'center',
+  },
+  icon: {
+    color: 'red',
+    fontSize: 16,
+    fontWeight: '900',
+    letterSpacing: 0.25,
   }
 });
